@@ -1,0 +1,712 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+/* Cooper Hewitt, the site's typeface (SIL Open Font License), served from the site itself:
+   every weight from Thin (100) to Heavy (800); font-black (900) uses Heavy */
+@import "@fontsource/cooper-hewitt/100.css";
+@import "@fontsource/cooper-hewitt/200.css";
+@import "@fontsource/cooper-hewitt/300.css";
+@import "@fontsource/cooper-hewitt/400.css";
+@import "@fontsource/cooper-hewitt/500.css";
+@import "@fontsource/cooper-hewitt/600.css";
+@import "@fontsource/cooper-hewitt/700.css";
+@import "@fontsource/cooper-hewitt/800.css";
+/* Comfortaa Bold, for the "Totalflux" name (font-brand), served from the site too, so no
+   stylesheet from another server holds up the first paint */
+@import "@fontsource/comfortaa/latin-700.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --font-sans: "Cooper Hewitt", ui-sans-serif, system-ui, sans-serif;
+  /* The small spaced-out labels (eyebrows, taglines): the same typeface */
+  --font-mono: "Cooper Hewitt", ui-sans-serif, system-ui, sans-serif;
+  /* The "Totalflux" name, lettered like the logo */
+  --font-brand: "Comfortaa", "Cooper Hewitt", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-primary-hover: var(--primary-hover);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.29 0.055 257);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.29 0.105 257);
+  --primary-hover: oklch(0.38 0.105 253);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.965 0.018 240);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.965 0.018 240);
+  --muted-foreground: oklch(0.41 0.04 256);
+  --accent: oklch(0.66 0.12 184);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.88 0.025 243);
+  --input: oklch(0.88 0.025 243);
+  --ring: oklch(0.66 0.12 184);
+  --soft-blue: oklch(0.95 0.026 242);
+  --scene-podium: #f7f9fb;
+  --scene-light: #ffffff;
+  --scene-fill: #d8eff2;
+  --scene-mint: #5eae91;
+  --scene-mint-dark: #377c65;
+  --scene-fallback: #dbeaf5;
+  --shadow-nav: 0 10px 35px color-mix(in oklab, var(--primary) 8%, transparent);
+  --shadow-button: 0 8px 20px color-mix(in oklab, var(--primary) 18%, transparent);
+  --shadow-button-hover: 0 12px 28px color-mix(in oklab, var(--primary) 27%, transparent);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@utility hero-surface {
+  background: linear-gradient(
+    118deg,
+    var(--background) 16%,
+    var(--background) 44%,
+    var(--soft-blue) 100%
+  );
+}
+
+/* A hero headline's first line, as a gradient: blue into deep navy, lighter on the left like
+   the second line's teal-to-navy, but deeper, so the second line stays the bright one */
+@utility headline-lead {
+  background-image: linear-gradient(90deg, #2f64a8 0%, #24467a 55%, #1c3566 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility hero-ray {
+  background: linear-gradient(
+    128deg,
+    color-mix(in oklab, var(--background) 82%, transparent) 0 18%,
+    transparent 18% 34%,
+    color-mix(in oklab, var(--background) 45%, transparent) 34% 42%,
+    transparent 42%
+  );
+  opacity: 0.9;
+}
+
+@utility hero-ring {
+  border: 1px solid color-mix(in oklab, var(--primary) 9%, transparent);
+  box-shadow: inset 0 0 0 4.5rem color-mix(in oklab, var(--background) 16%, transparent);
+}
+
+@utility foliage-shadow {
+  background:
+    radial-gradient(
+      ellipse at 70% 16%,
+      color-mix(in oklab, var(--accent) 30%, transparent) 0 7%,
+      transparent 8%
+    ),
+    radial-gradient(
+      ellipse at 48% 36%,
+      color-mix(in oklab, var(--accent) 28%, transparent) 0 10%,
+      transparent 11%
+    ),
+    radial-gradient(
+      ellipse at 78% 54%,
+      color-mix(in oklab, var(--accent) 24%, transparent) 0 12%,
+      transparent 13%
+    ),
+    radial-gradient(
+      ellipse at 38% 68%,
+      color-mix(in oklab, var(--accent) 22%, transparent) 0 9%,
+      transparent 10%
+    );
+  filter: blur(18px);
+  transform: rotate(-22deg);
+  opacity: 0.48;
+}
+
+@utility nav-link {
+  position: relative;
+  padding-block: 0.35rem;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 220ms ease;
+  }
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* Button shine sweep */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  animation: btn-shine 3.5s ease-in-out 2s infinite;
+  pointer-events: none;
+}
+@keyframes btn-shine {
+  to {
+    transform: translateX(120%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-shine::after {
+    animation: none;
+  }
+}
+/*
+ * The heroes' promise pills (HomeHero.tsx, MouthwashHero.tsx): every few seconds a soft band of light glides
+ * across its tinted glass, behind the words so they stay crisp (the ::after, below the text
+ * in the pill's own stacking context), and its shield pops as the light passes; both run on
+ * one cycle (--pill-cycle), after --pill-delay, resting between sweeps. All the while a blue
+ * ring round the pill blinks softly, bright then faint, on its own quicker beat.
+ */
+.pill-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  animation: pill-blink 1.2s ease-in-out infinite;
+}
+.pill-shine::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -40% auto -40% 0;
+  width: 34%;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 30%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.55) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-170%) skewX(-20deg);
+  animation: pill-sweep var(--pill-cycle, 4.6s) cubic-bezier(0.4, 0, 0.6, 1) var(--pill-delay, 1.4s)
+    infinite;
+  pointer-events: none;
+}
+.pill-shine-icon {
+  animation: pill-pop var(--pill-cycle, 4.6s) ease-out var(--pill-delay, 1.4s) infinite;
+}
+@keyframes pill-sweep {
+  0% {
+    transform: translateX(-170%) skewX(-20deg);
+  }
+  34%,
+  100% {
+    transform: translateX(460%) skewX(-20deg);
+  }
+}
+/* The blue ring: bright, with a soft halo, then faint, and back */
+@keyframes pill-blink {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 12px 30px -16px rgba(20, 60, 120, 0.4),
+      0 0 0 2px rgba(43, 108, 176, 0.95),
+      0 0 16px 2px rgba(43, 108, 176, 0.45);
+  }
+  50% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 12px 30px -16px rgba(20, 60, 120, 0.4),
+      0 0 0 2px rgba(43, 108, 176, 0.15),
+      0 0 16px 2px rgba(43, 108, 176, 0);
+  }
+}
+/* The shield pops as the light reaches it, near the start of the sweep */
+@keyframes pill-pop {
+  0%,
+  20%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  8% {
+    transform: scale(1.28) rotate(-8deg);
+  }
+  14% {
+    transform: scale(0.96) rotate(3deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pill-shine,
+  .pill-shine-icon,
+  .pill-shine::after {
+    animation: none;
+  }
+  /* The ring stays, steady */
+  .pill-shine {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 12px 30px -16px rgba(20, 60, 120, 0.4),
+      0 0 0 2px rgba(43, 108, 176, 0.7);
+  }
+}
+
+/* src/styles/globals.css (or src/index.css — wherever your global CSS entry is) */
+html {
+  scroll-snap-type: y proximity;
+}
+
+/* Hero water bubbles (HeroArt.tsx): a slow bob, each out of step with the others */
+.hero-bubble {
+  animation: hero-bubble-float 7s ease-in-out infinite;
+}
+@keyframes hero-bubble-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/*
+ * Toothpaste hero tubes (Hero.tsx): light falling across each tube, and a shine that
+ * sweeps over it now and then. Both are masked by the tube's own photo (--tube: its url), so
+ * they only ever touch the tube. The light: brighter down the left and near the top, a touch
+ * of shade down the right, as if lit from the upper left. The shine: a soft band crossing
+ * the tube in the first part of each cycle, after --shine-delay.
+ */
+.tube-light,
+.tube-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask: var(--tube) center / 100% 100% no-repeat;
+  mask: var(--tube) center / 100% 100% no-repeat;
+}
+.tube-light {
+  background:
+    /* A glossy streak down the tube, like light caught on the plastic */
+    linear-gradient(
+      90deg,
+      transparent 9%,
+      rgba(255, 255, 255, 0.5) 15%,
+      rgba(255, 255, 255, 0.12) 19%,
+      transparent 25%
+    ),
+    radial-gradient(ellipse 70% 22% at 32% 10%, rgba(255, 255, 255, 0.35), transparent 70%),
+    /* Lit from the left, shaded towards the right: it reads as round */
+    linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.28) 0%,
+        rgba(255, 255, 255, 0) 34%,
+        rgba(10, 30, 70, 0) 58%,
+        rgba(10, 30, 70, 0.26) 100%
+      );
+}
+.tube-shine {
+  overflow: hidden;
+}
+.tube-shine::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  width: 42%;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.18) 30%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.18) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  /* Hidden between sweeps (and before the first) */
+  opacity: 0;
+  transform: translateX(-450%) skewX(-14deg);
+  animation: tube-shine 7s cubic-bezier(0.45, 0, 0.2, 1) var(--shine-delay, 0s) infinite;
+}
+/* The band is slanted, so on a tall, narrow tube its ends reach well past where its middle is:
+   it starts and ends far off either side (in its own widths), and fades in and out, so none
+   of it is left resting on the tube between sweeps. */
+@keyframes tube-shine {
+  0% {
+    opacity: 0;
+    transform: translateX(-450%) skewX(-14deg);
+  }
+  3%,
+  19% {
+    opacity: 1;
+  }
+  22%,
+  100% {
+    opacity: 0;
+    transform: translateX(450%) skewX(-14deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tube-shine::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/*
+ * Mouthwash hero bubbles (MouthwashHero.tsx): rising through the liquid-coloured glow and
+ * fading out near the top. Each sets its own --rise-duration and --rise-delay (negative, so
+ * they are already mid-rise when the page loads). With reduced motion they don't show.
+ */
+.mw-bubble {
+  opacity: 0;
+  animation: mw-bubble-rise var(--rise-duration, 10s) linear var(--rise-delay, 0s) infinite;
+}
+@keyframes mw-bubble-rise {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-42vh) scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* A new bubble swells into place, overshooting a little like a freshly blown one */
+.hero-bubble-in {
+  animation: hero-bubble-in 900ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes hero-bubble-in {
+  from {
+    scale: 0;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+/* Popping: a hole tears open in the film where it was clicked (--hole-x/y) and races across
+   it, while droplets from the rim spray outward (--from-x/y to --to-x/y) and fade. */
+@property --hero-pop-hole {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+.hero-pop-film {
+  -webkit-mask-image: radial-gradient(
+    circle at var(--hole-x) var(--hole-y),
+    transparent var(--hero-pop-hole),
+    #000 calc(var(--hero-pop-hole) + 6%)
+  );
+  mask-image: radial-gradient(
+    circle at var(--hole-x) var(--hole-y),
+    transparent var(--hero-pop-hole),
+    #000 calc(var(--hero-pop-hole) + 6%)
+  );
+  animation: hero-pop-film 130ms ease-in forwards;
+}
+@keyframes hero-pop-film {
+  from {
+    --hero-pop-hole: 0%;
+    scale: 1;
+  }
+  to {
+    --hero-pop-hole: 110%;
+    scale: 1.06;
+    opacity: 0.4;
+  }
+}
+.hero-pop-drop {
+  translate: -50% -50%;
+  background: radial-gradient(circle at 35% 30%, #fff 0 25%, rgba(170, 212, 248, 0.9));
+  animation: hero-pop-drop 480ms cubic-bezier(0.15, 0.7, 0.3, 1) 40ms both;
+}
+@keyframes hero-pop-drop {
+  from {
+    transform: translate(var(--from-x), var(--from-y)) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(var(--to-x), var(--to-y)) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* Letter effects on hover (TextEffects.tsx): they play while the element marked .letter-fx
+   around the text is hovered (on devices that can hover) or keyboard-focused. --i is each
+   letter's place in the text, so the letters go one after another. */
+
+/* Roll: each letter slides up out of view as a copy of it (::after, parked just below and
+   clipped away) slides up into its place. */
+.letter-roll {
+  display: inline-block;
+  white-space: nowrap;
+  clip-path: inset(-0.05em -0.15em -0.12em);
+}
+.letter-roll > span {
+  position: relative;
+  display: inline-block;
+  white-space: pre;
+  transition: transform 550ms cubic-bezier(0.7, 0, 0.3, 1) calc(var(--i) * 18ms);
+}
+.letter-roll > span::after {
+  content: attr(data-char);
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.3em);
+}
+.letter-fx:focus-visible .letter-roll > span {
+  transform: translateY(calc(-100% - 0.3em));
+}
+
+/* Wave: a hop runs through the letters; also played once when its element becomes the
+   current one (aria-current). */
+.letter-wave {
+  display: inline-block;
+  white-space: nowrap;
+}
+.letter-wave > span {
+  display: inline-block;
+  white-space: pre;
+}
+.letter-fx:focus-visible .letter-wave > span,
+.letter-fx[aria-current] .letter-wave > span {
+  animation: letter-wave 600ms cubic-bezier(0.3, 0.7, 0.4, 1) calc(var(--i) * 30ms);
+}
+@keyframes letter-wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(-0.35em);
+  }
+  60% {
+    transform: translateY(0.05em);
+  }
+}
+
+@media (hover: hover) {
+  .letter-fx:hover .letter-roll > span {
+    transform: translateY(calc(-100% - 0.3em));
+  }
+  .letter-fx:hover .letter-wave > span {
+    animation: letter-wave 600ms cubic-bezier(0.3, 0.7, 0.4, 1) calc(var(--i) * 30ms);
+  }
+}
+
+/* Toothpaste hero (Hero.tsx): soft colour drifting slowly behind it */
+.aurora-drift {
+  animation: aurora-drift var(--drift-duration, 24s) ease-in-out var(--drift-delay, 0s) infinite
+    alternate;
+}
+@keyframes aurora-drift {
+  from {
+    transform: translate(-7%, -5%);
+  }
+  to {
+    transform: translate(7%, 6%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora-drift {
+    animation: none;
+  }
+}
+
+/*
+ * A hero's entrance: rising into place as soon as the page paints, in CSS rather than
+ * JavaScript, so the first screen shows while the scripts are still loading (and even if they
+ * fail). Set --enter-delay (s), --enter-y (how far below it starts), --enter-duration, and
+ * if it should also come in from the side or turned, --enter-x and --enter-rotate. It starts
+ * faint rather than invisible: on screen from the very first frame (browsers don't count a
+ * fully transparent element as shown), settling in as it rises.
+ */
+@keyframes enter-rise {
+  from {
+    opacity: 0.12;
+    transform: translate(var(--enter-x, 0px), var(--enter-y, 22px)) rotate(var(--enter-rotate, 0deg));
+  }
+}
+.enter-rise {
+  animation: enter-rise var(--enter-duration, 0.75s) cubic-bezier(0.22, 1, 0.36, 1)
+    var(--enter-delay, 0s) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .enter-rise {
+    animation: none;
+  }
+}
+
+/*
+ * Phones: the frosted glass and the soft colour blobs at half strength. A blur costs a phone
+ * work in proportion to its radius, and at phone sizes the difference hardly shows. (Tailwind's
+ * blur classes read these variables; outside any layer, this wins over its theme.)
+ */
+@media (max-width: 767px) {
+  :root {
+    --blur-md: 6px;
+    --blur-xl: 12px;
+    --blur-3xl: 32px;
+  }
+}
+
+/*
+ * A section off the screen pauses its looping animations (rings, bubbles, shines): nothing
+ * there to see, so nothing for the device to keep drawing. use-pause-offscreen.ts marks them.
+ */
+section[data-offscreen],
+section[data-offscreen] * {
+  animation-play-state: paused !important;
+}

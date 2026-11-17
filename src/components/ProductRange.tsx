@@ -168,7 +168,7 @@ function ProductPanel({ product, flip }: { product: ProductPage; flip: boolean }
               height={product.image.height}
               alt={`Totalflux ${product.name} toothpaste`}
               draggable={false}
-              className="h-[72%] w-auto select-none object-contain drop-shadow-[0_34px_40px_rgba(15,40,80,0.3)]"
+              className="h-[90%] w-auto select-none object-contain drop-shadow-[0_34px_40px_rgba(15,40,80,0.3)]"
               style={{ y: tubeY }}
             />
           </div>

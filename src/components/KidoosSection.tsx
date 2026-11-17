@@ -109,9 +109,9 @@ function KidooCard({ kidoo, index }: { kidoo: Kidoo; index: number }) {
 
       <div className="relative grid items-center gap-5 sm:grid-cols-[auto_1fr] sm:gap-x-10">
         {/* Tube with its age badge */}
-        <div className="relative mx-auto h-60 w-28 sm:h-72 sm:w-32">
+        <div className="relative mx-auto h-72 w-32 sm:h-[22rem] sm:w-40">
           <motion.img
-            {...lazyImage(kidoo.image, "128px")}
+            {...lazyImage(kidoo.image, "160px")}
             width={kidoo.image.width}
             height={kidoo.image.height}
             alt={`Totalflux ${kidoo.name} toothpaste`}

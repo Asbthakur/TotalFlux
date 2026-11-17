@@ -755,18 +755,18 @@ export function Hero({ transitionColor }: { transitionColor?: string }) {
             />
           )}
 
-          <div className="relative mx-auto flex min-h-0 w-full max-w-[90rem] flex-1 flex-col px-5 pb-3 pt-[5.5rem] sm:px-8 lg:px-12">
+          <div className="relative mx-auto flex min-h-0 w-full max-w-[90rem] flex-1 flex-col px-5 pb-2 pt-20 sm:px-8 lg:px-12">
             {/* The text, the pills and the button */}
             <div className="relative z-30 flex flex-col items-center text-center">
               <div className="enter-rise w-full" style={enter(0.15)}>
                 <HeroText activeIndex={activeIndex} />
               </div>
 
-              <div className="enter-rise mt-4 w-full" style={enter(0.5)}>
+              <div className="enter-rise mt-3 w-full" style={enter(0.5)}>
                 <StepPills activeIndex={activeIndex} onSelect={pick} />
               </div>
 
-              <div className="enter-rise mt-5" style={enter(0.8)}>
+              <div className="enter-rise mt-3" style={enter(0.8)}>
                 <motion.div
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
@@ -789,7 +789,7 @@ export function Hero({ transitionColor }: { transitionColor?: string }) {
               // Over: as it comes onto a tube, so the hint starts where the mouse is
               onPointerOver={trackPointer}
               onPointerMove={trackPointer}
-              className="relative mt-2 min-h-0 flex-1 [--tube-h:min(84cqh,58cqw)] [container-type:size] lg:[--tube-h:min(88cqh,32cqw)]"
+              className="relative mt-1 min-h-0 flex-1 [--tube-h:min(92cqh,62cqw)] [container-type:size] lg:[--tube-h:min(96cqh,36cqw)]"
               // While the pulsing dot is up, it stands in for the pointer
               style={(hover.over !== null ? { "--tube-cursor": "none" } : {}) as CSSProperties}
             >
@@ -801,7 +801,7 @@ export function Hero({ transitionColor }: { transitionColor?: string }) {
               <ul
                 ref={rowRef}
                 aria-label="The Totalflux toothpaste range"
-                className="absolute inset-x-0 bottom-[4cqh] flex items-end justify-center gap-[3.5cqw] lg:gap-[2.4cqw]"
+                className="absolute inset-x-0 bottom-[1.5cqh] flex items-end justify-center gap-[3.5cqw] lg:gap-[2.4cqw]"
               >
                 {ROW.map((product, order) => (
                   <Tube
